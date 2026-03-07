@@ -24,5 +24,9 @@ public:
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, Health)
 	
+	UPROPERTY()
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, MaxHealth)
 	
+	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
 };
