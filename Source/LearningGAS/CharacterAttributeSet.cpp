@@ -7,8 +7,11 @@ void UCharacterAttributeSet::PostAttributeChange(const FGameplayAttribute& Attri
 {
 	Super::PostAttributeChange(Attribute, OldValue, NewValue);
 	
+	bool ShouldCheckForMaxHealthCap = false;
+	
 	if (Attribute == GetHealthAttribute())
 	{
+		ShouldCheckForMaxHealthCap = true;
 		FGameplayAbilityActorInfo* ActorInfo = GetActorInfo();
 		
 		if (!ActorInfo)
@@ -26,14 +29,21 @@ void UCharacterAttributeSet::PostAttributeChange(const FGameplayAttribute& Attri
 		if (NewValue < 0)
 		{
 			Actor->Destroy();
+			return;
 		}
-		else
+	}
+	
+	if (!ShouldCheckForMaxHealthCap)
+	{
+		ShouldCheckForMaxHealthCap = Attribute == GetMaxHealthAttribute();
+	}
+	
+	if (ShouldCheckForMaxHealthCap)
+	{
+		const float MaxHealthValue = GetMaxHealth();
+		if (NewValue > MaxHealthValue)
 		{
-			const float MaxHealthValue = GetMaxHealth();
-			if (NewValue > MaxHealthValue)
-			{
-				SetHealth(MaxHealthValue);
-			}
+			SetHealth(MaxHealthValue);
 		}
 	}
 }
