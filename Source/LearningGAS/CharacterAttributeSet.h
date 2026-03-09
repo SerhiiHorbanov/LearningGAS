@@ -7,12 +7,6 @@
 #include "AbilitySystemComponent.h"
 #include "CharacterAttributeSet.generated.h"
 
-#define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
-	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
-	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
-	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
-	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
-
 UCLASS()
 class LEARNINGGAS_API UCharacterAttributeSet : public UAttributeSet
 {
@@ -22,19 +16,19 @@ public:
 	
 	UPROPERTY()
 	FGameplayAttributeData Health;
-	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, Health)
+	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, Health)
 	
 	UPROPERTY()
 	FGameplayAttributeData MaxHealth;
-	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, MaxHealth)
+	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, MaxHealth)
 	
 	UPROPERTY()
 	FGameplayAttributeData Damage;
-	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, Damage)
+	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, Damage)
 	
 	UPROPERTY()
 	FGameplayAttributeData Speed;
-	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, Speed)
+	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, Speed)
 	
 	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
 };
