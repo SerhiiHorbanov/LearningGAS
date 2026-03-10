@@ -25,4 +25,6 @@ public:
 	UPROPERTY()
 	FGameplayAttributeData MaxStamina;
 	ATTRIBUTE_ACCESSORS_BASIC(UMovementAttributeSet, MaxStamina)
+	
+	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
 };
