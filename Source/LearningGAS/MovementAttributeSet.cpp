@@ -24,12 +24,6 @@ void UMovementAttributeSet::PostAttributeChange(const FGameplayAttribute& Attrib
 		{
 			return;
 		}
-		
-		if (NewValue < 0)
-		{
-			Actor->Destroy();
-			return;
-		}
 	}
 	
 	if (!ShouldCheckForMaxStaminaCap)
