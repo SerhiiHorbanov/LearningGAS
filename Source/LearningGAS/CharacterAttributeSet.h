@@ -23,6 +23,10 @@ public:
 	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, MaxHealth)
 	
 	UPROPERTY()
+	FGameplayAttributeData Armor;
+	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, Armor)
+	
+	UPROPERTY()
 	FGameplayAttributeData Damage;
 	ATTRIBUTE_ACCESSORS_BASIC(UCharacterAttributeSet, Damage)
 	
