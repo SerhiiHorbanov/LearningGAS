@@ -41,25 +41,15 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 		return;
 	}
 
-	const FGameplayEffectSpec& Spec = ExecutionParams.GetOwningSpec();
-
-	const FGameplayTagContainer* SourceTags = Spec.CapturedSourceTags.GetAggregatedTags();
-	const FGameplayTagContainer* TargetTags = Spec.CapturedTargetTags.GetAggregatedTags();
-
 	FAggregatorEvaluateParameters EvaluationParameters;
-	EvaluationParameters.SourceTags = SourceTags;
-	EvaluationParameters.TargetTags = TargetTags;
 
 	float DamageValue = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().DamageDef, EvaluationParameters, DamageValue);
-
+	
 	float ArmorValue = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, ArmorValue);
 
 	float DamageDone = FMath::Max(1.0f, DamageValue - (ArmorValue * 0.5f));
-
-	if (DamageDone > 0.0f)
-	{
-		OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(UCharacterAttributeSet::GetHealthAttribute(), EGameplayModOp::Additive, -DamageDone));
-	}
+	
+	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(UCharacterAttributeSet::GetHealthAttribute(), EGameplayModOp::Additive, -DamageDone));
 }
