@@ -2,7 +2,8 @@
 
 
 #include "DamageExecutionCalculation.h"
-#include "CharacterAttributeSet.h"
+#include "HealthAttributeSet.h"
+#include "DamageAttributeSet.h"
 
 struct FDamageStatics
 {
@@ -12,10 +13,10 @@ struct FDamageStatics
 	FDamageStatics()
 	{
 		// Capture Damage from the Source (damager)
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UCharacterAttributeSet, Damage, Source, true);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UDamageAttributeSet, Damage, Source, true);
 		
 		// Capture Armor from the Target
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UCharacterAttributeSet, Armor, Target, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UHealthAttributeSet, Armor, Target, false);
 	}
 };
 
@@ -51,5 +52,5 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 
 	float DamageDone = FMath::Max(1.0f, DamageValue - (ArmorValue * 0.5f));
 	
-	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(UCharacterAttributeSet::GetHealthAttribute(), EGameplayModOp::Additive, -DamageDone));
+	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(UHealthAttributeSet::GetHealthAttribute(), EGameplayModOp::Additive, -DamageDone));
 }

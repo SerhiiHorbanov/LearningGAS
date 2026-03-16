@@ -6,9 +6,6 @@
 #include "GameplayEffectExecutionCalculation.h"
 #include "DamageExecutionCalculation.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class LEARNINGGAS_API UDamageExecutionCalculation : public UGameplayEffectExecutionCalculation
 {
