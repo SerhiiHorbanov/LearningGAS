@@ -15,4 +15,8 @@ public:
 	UDamageExecutionCalculation();
 
 	virtual void Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const override;
+
+private:
+	
+	float GetArmorMultiplier(const UWorld* World) const;
 };

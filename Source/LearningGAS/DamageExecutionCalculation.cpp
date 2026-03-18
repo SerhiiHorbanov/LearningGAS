@@ -4,6 +4,8 @@
 #include "DamageExecutionCalculation.h"
 #include "HealthAttributeSet.h"
 #include "DamageAttributeSet.h"
+#include "DifficultySubsystem.h"
+#include "DifficultyTypes.h"
 
 struct FDamageStatics
 {
@@ -50,7 +52,25 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 	float ArmorValue = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, ArmorValue);
 
-	float DamageDone = FMath::Max(1.0f, DamageValue - (ArmorValue * 0.5f));
+	float DamageDone = FMath::Max(1.0f, DamageValue - (ArmorValue * GetArmorMultiplier(TargetASC->GetWorld())));
 	
 	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(UHealthAttributeSet::GetHealthAttribute(), EGameplayModOp::Additive, -DamageDone));
+}
+
+float UDamageExecutionCalculation::GetArmorMultiplier(const UWorld* World) const
+{
+	check(World)
+	UDifficultySubsystem* DifficultySubsystem = World->GetSubsystem<UDifficultySubsystem>();
+	check(DifficultySubsystem)
+	
+	EDifficulty Difficulty = DifficultySubsystem->GetCurrentDifficulty();
+	switch (Difficulty)
+	{
+		default: 
+			return 0.5f;
+		case EDifficulty::Hard:
+			return 0.75f;
+		case EDifficulty::Nightmare:
+			return 1.0f;
+	}
 }
