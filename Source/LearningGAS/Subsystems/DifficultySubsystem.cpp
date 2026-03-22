@@ -2,8 +2,8 @@
 
 #include "DifficultySubsystem.h"
 #include "GameFramework/GameStateBase.h"
-#include "DifficultyComponent.h"
 #include "Engine/World.h"
+#include "LearningGAS/DifficultyComponent.h"
 
 EDifficulty UDifficultySubsystem::GetCurrentDifficulty()
 {

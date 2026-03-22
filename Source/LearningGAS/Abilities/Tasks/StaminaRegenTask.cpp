@@ -3,8 +3,8 @@
 
 #include "StaminaRegenTask.h"
 #include "AbilitySystemComponent.h"
-#include "MovementAttributeSet.h"
 #include "GameplayTagContainer.h"
+#include "LearningGAS/Attributes/MovementAttributeSet.h"
 
 UStaminaRegenTask::UStaminaRegenTask()
 {

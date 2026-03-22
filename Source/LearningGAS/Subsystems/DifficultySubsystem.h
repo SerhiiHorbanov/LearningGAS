@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "LearningGAS/DifficultyTypes.h"
 #include "Subsystems/WorldSubsystem.h"
-#include "DifficultyTypes.h"
 #include "DifficultySubsystem.generated.h"
 
 class UDifficultyComponent;

@@ -2,10 +2,13 @@
 
 
 #include "DamageExecutionCalculation.h"
-#include "HealthAttributeSet.h"
-#include "DamageAttributeSet.h"
-#include "DifficultySubsystem.h"
-#include "DifficultyTypes.h"
+#include "LearningGAS/Attributes/DamageAttributeSet.h"
+#include "LearningGAS/Attributes/HealthAttributeSet.h"
+#include "LearningGAS/DifficultyTypes.h"
+#include "LearningGAS/Subsystems/DifficultySubsystem.h"
+
+enum class EDifficulty : uint8;
+class UDifficultySubsystem;
 
 struct FDamageStatics
 {
