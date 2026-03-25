@@ -15,16 +15,10 @@ class LEARNINGGAS_API UMovementAttributeSet : public UAttributeSet
 public:
 	
 	UPROPERTY()
-	FGameplayAttributeData Stamina;
-	ATTRIBUTE_ACCESSORS_BASIC(UMovementAttributeSet, Stamina)
+	FGameplayAttributeData Speed;
+	ATTRIBUTE_ACCESSORS_BASIC(UMovementAttributeSet, Speed)
 	
 	UPROPERTY()
-	FGameplayAttributeData StaminaRegeneration;
-	ATTRIBUTE_ACCESSORS_BASIC(UMovementAttributeSet, StaminaRegeneration)
-	
-	UPROPERTY()
-	FGameplayAttributeData MaxStamina;
-	ATTRIBUTE_ACCESSORS_BASIC(UMovementAttributeSet, MaxStamina)
-	
-	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
+	FGameplayAttributeData JumpForce;
+	ATTRIBUTE_ACCESSORS_BASIC(UMovementAttributeSet, JumpForce)
 };

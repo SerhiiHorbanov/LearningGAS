@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MovementAttributeSet.h"
+#include "StaminaAttributeSet.h"
 
-void UMovementAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)
+void UStaminaAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)
 {	Super::PostAttributeChange(Attribute, OldValue, NewValue);
 	
 	bool ShouldCheckForMaxStaminaCap = false;

@@ -4,7 +4,7 @@
 #include "StaminaRegenTask.h"
 #include "AbilitySystemComponent.h"
 #include "GameplayTagContainer.h"
-#include "LearningGAS/Attributes/MovementAttributeSet.h"
+#include "LearningGAS/Attributes/StaminaAttributeSet.h"
 
 UStaminaRegenTask::UStaminaRegenTask()
 {
@@ -26,7 +26,7 @@ void UStaminaRegenTask::TickTask(float DeltaTime)
 	UAbilitySystemComponent* MyASC = AbilitySystemComponent.Get();
 	if (MyASC && RegenEffectClass)
 	{
-		float StaminaRegen = MyASC->GetNumericAttribute(UMovementAttributeSet::GetStaminaRegenerationAttribute());
+		float StaminaRegen = MyASC->GetNumericAttribute(UStaminaAttributeSet::GetStaminaRegenerationAttribute());
 		float RegenMagnitude = DeltaTime * StaminaRegen;
 
 		FGameplayEffectContextHandle EffectContext = MyASC->MakeEffectContext();
