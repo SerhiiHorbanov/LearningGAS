@@ -55,7 +55,8 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 	float ArmorValue = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, ArmorValue);
 
-	float DamageDone = FMath::Max(1.0f, DamageValue - (ArmorValue * GetArmorMultiplier(TargetASC->GetWorld())));
+	float ArmorMultiplier = GetArmorMultiplier(TargetASC->GetWorld());
+	float DamageDone = FMath::Max(1.0f, DamageValue - (ArmorValue * ArmorMultiplier));
 	
 	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(UHealthAttributeSet::GetHealthAttribute(), EGameplayModOp::Additive, -DamageDone));
 }
@@ -69,11 +70,11 @@ float UDamageExecutionCalculation::GetArmorMultiplier(const UWorld* World) const
 	EDifficulty Difficulty = DifficultySubsystem->GetCurrentDifficulty();
 	switch (Difficulty)
 	{
-		default: 
-			return 0.5f;
 		case EDifficulty::Hard:
 			return 0.75f;
 		case EDifficulty::Nightmare:
 			return 1.0f;
+		default: 
+			return 0.5f;
 	}
 }

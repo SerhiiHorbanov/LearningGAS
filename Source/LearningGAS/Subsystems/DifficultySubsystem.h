@@ -7,8 +7,6 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "DifficultySubsystem.generated.h"
 
-class UDifficultyComponent;
-
 UCLASS()
 class LEARNINGGAS_API UDifficultySubsystem : public UWorldSubsystem
 {
@@ -19,9 +17,7 @@ public:
 	EDifficulty GetCurrentDifficulty();
 
 private:
-	TWeakObjectPtr<UDifficultyComponent> CachedDifficultyComponent;
-
-	UDifficultyComponent* GetDifficultyComponent();
+	EDifficulty Difficulty;
 	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 };
