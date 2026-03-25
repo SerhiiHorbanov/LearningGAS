@@ -4,6 +4,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "Engine/World.h"
 #include "LearningGAS/DifficultyComponent.h"
+#include "LearningGAS/Settings/DifficultySettings.h"
 
 EDifficulty UDifficultySubsystem::GetCurrentDifficulty()
 {
@@ -33,4 +34,11 @@ UDifficultyComponent* UDifficultySubsystem::GetDifficultyComponent()
 	}
 
 	return nullptr;
+}
+
+void UDifficultySubsystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+	const UDifficultySettings* DifficultySettings = GetDefault<UDifficultySettings>();
+	
+
 }

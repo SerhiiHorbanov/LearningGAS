@@ -22,4 +22,6 @@ private:
 	TWeakObjectPtr<UDifficultyComponent> CachedDifficultyComponent;
 
 	UDifficultyComponent* GetDifficultyComponent();
+	
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 };
